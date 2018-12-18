@@ -33,10 +33,32 @@ ament_target_dependencies(${executable_name}
   ${dependencies}
 )
 
-install(TARGETS ${executable_name}
+add_executable(param_client_bug
+  src/param_client_bug.cpp
+)
+
+ament_target_dependencies(param_client_bug
+  ${dependencies}
+)
+
+add_executable(param_client_remote_node
+  src/param_client_remote_node.cpp
+)
+
+ament_target_dependencies(param_client_remote_node
+  ${dependencies}
+)
+
+install(TARGETS ${executable_name} param_client_bug param_client_remote_node
   ARCHIVE DESTINATION lib
   LIBRARY DESTINATION lib
   RUNTIME DESTINATION lib/${PROJECT_NAME}
+)
+
+# Install launch files.
+install(DIRECTORY
+  launch
+  DESTINATION share/${PROJECT_NAME}/
 )
 
 # install(DIRECTORY include/
